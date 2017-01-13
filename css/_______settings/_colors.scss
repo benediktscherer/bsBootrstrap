@@ -1,0 +1,36 @@
+/* ================================ *\
+              COLORS
+\* ================================ */
+$color-primary:   #16bae7 !default;
+$color-secondary: #a5ca3c !default;
+
+$color-black:     #3e3d40 !default;
+$color-white:     #ffffff !default;
+
+$color-grey:      #ccc !default;
+$color-grey-light: #eee !default;
+$color-dark:      #3e3d40 !default;
+
+$color-success:   #16bae7 !default;
+$color-error:     #f00 !default;
+$color-hint:      #F4BC26 !default;
+
+$color-cta:       $color-primary !default;
+
+
+// Main
+$color-background: $color-white !default;
+$color-paragraph: $color-black !default;
+
+// Headline
+$color-headline:  $color-primary !default;
+$color-subheadline: $color-secondary !default;
+
+// Social
+$color-facebook:     #3c5998;
+$color-twitter:      #55acee;
+$color-gplus:        #dc4a38;
+$color-youtube:      #e62117;
+$color-rss:          #ff6c00;
+$color-instagram:    #3f729b;
+$color-blog:         $color-primary;

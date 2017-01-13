@@ -1,0 +1,48 @@
+@mixin _headline($font-size: $font-size-2, $color: $color-headline){
+  @include font-light();
+  font-size: $font-size;
+  line-height: 1.2;
+  color: $color;
+
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin _paragraph($font-size: $font-size-5, $color: $color-paragraph){
+  @include font-regular();
+  font-size: $font-size;
+  line-height: 1.3;
+  color: $color;
+
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  strong{
+    font-weight: normal;
+    @include font-bold();
+  }
+}
+
+@mixin _button($font-size: $font-size-5, $color: $color-paragraph){
+  @include font-bold();
+  font-size: $font-size;
+  line-height: 1.2;
+  color: $color;
+
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin _label($font-size: $font-size-5, $color: $color-paragraph){
+  @include font-bold();
+  font-size: $font-size;
+  line-height: 1.2;
+  color: $color;
+
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

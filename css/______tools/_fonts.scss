@@ -1,0 +1,23 @@
+// Fonts
+$font-light: 'Helvetica Neue', Arial, sans-serif !default;
+$font-regular: 'Helvetica Neue', Arial, sans-serif !default;
+$font-bold: 'Helvetica Neue', Arial, sans-serif !default;
+
+
+@mixin font-light(){
+  font-family: $font-light;
+  font-style: normal;
+  font-weight: 300;
+}
+
+@mixin font-regular(){
+  font-family: $font-regular;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin font-bold(){
+  font-family: $font-bold;
+  font-style: normal;
+  font-weight: 700;
+}
