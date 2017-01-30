@@ -1,0 +1,19 @@
+/* ================================ *\
+            Breakpoints
+\* ================================ */
+$breakpoint-mobile-max:     320px;
+$breakpoint-tablet-max:     1024px;
+$breakpoint-desktop-max:    1336px;
+
+$grid-container-width:      970px;
+$grid-amount-columns:       12;
+$grid-gutter-width:         30px;
+
+
+// 
+// prefixed
+// -------------------
+$webkit:    true;
+$moz:       true;
+$ms:        true;
+$o:         true;

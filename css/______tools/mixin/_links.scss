@@ -1,0 +1,22 @@
+/* ================================ *\
+    
+    link style
+
+\* ================================ */
+@mixin _link-default() {
+  &:link,
+  &:focus,
+  &:visited,
+  &.active {
+    @content;
+  }
+}
+
+
+@mixin _link-active() {
+  &:hover,
+  &:focus{
+    @content;
+  }
+
+}

@@ -1,0 +1,94 @@
+/* ================================ *\
+
+    Icons
+
+    a:before{
+      @extend %_icon-check;
+    }
+
+\* ================================ */
+%_icon-style{
+  display: inline-block;
+
+  font-family: FontAwesome;
+  line-height: 1;
+  font-size: inherit;
+  font-weight: normal;
+
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+%_icon-plus{
+  @extend %_icon-style;
+  content: '\f067';
+}
+
+%_icon-minus{
+  @extend %_icon-style;
+  content: '\f068';
+}
+
+%_icon-check{
+  @extend %_icon-style;
+  content: "\f00c";
+}
+
+%_icon-close{
+  @extend %_icon-style;
+  content: '\f00d';
+}
+
+%_icon-search{
+  @extend %_icon-style;
+  content: '\f002';
+}
+
+//
+// Angles & Arrow
+// ------------------------
+// ARROWs
+// --------------------------
+%_icon-caret-right{
+  @extend %_icon-style;
+  content: '\f0da';
+}
+
+%_icon-caret-down{
+  @extend %_icon-style;
+  content: '\f0d7';
+}
+
+%_icon-caret-up{
+  @extend %_icon-style;
+  content: '\f0d8';
+}
+
+%_icon-angle-up{
+  @extend %_icon-style;
+  content: '\f106';
+}
+%_icon-angle-down{
+  @extend %_icon-style;
+  content: '\f107';
+}
+%_icon-angle-right{
+  @extend %_icon-style;
+  content: '\f105';
+}
+%_icon-angle-left  {
+  @extend %_icon-style;
+  content: '\f104';
+}
+
+%_icon-arrow-up{
+  @extend %_icon-style;
+  content: '\f176';
+}
+%_icon-arrow-down{
+  @extend %_icon-style;
+  content: '\f175';
+}

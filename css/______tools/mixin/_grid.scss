@@ -1,0 +1,28 @@
+@mixin _grid-bootstrap($gutter-width: $grid-gutter-width, $grid-columns: $grid-amount-columns, $container-width-max: $grid-container-width){
+  .container{
+    margin: 0 auto;
+    position: relative;
+    width: $container-width-max;
+    @include _clearfix();
+  }
+
+  .row {
+    margin-left:  ($gutter-width / -2);
+    margin-right: ($gutter-width / -2);
+    @include clearfix();
+  }
+
+  $i: 1;
+  $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+  @for $i from (1 + 1) through $grid-columns {
+    $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+  }
+  #{$list} {
+    position: relative;
+    // Prevent columns from collapsing when empty
+    min-height: 1px;
+    // Inner gutter via padding
+    padding-left:  ($gutter-width / 2);
+    padding-right: ($gutter-width / 2);
+  }
+}

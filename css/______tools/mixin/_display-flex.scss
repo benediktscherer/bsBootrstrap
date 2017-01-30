@@ -1,0 +1,16 @@
+/* ================================ *\
+    
+    Display: flex
+    @include _display-flex(flex, center, center, row);
+    @include _display-flex(block);
+
+\* ================================ */
+@mixin _display-flex($type: flex, $align-items: center, $justify-content: flex-start, $flex-direction: row){
+  display: $type;
+
+  @if $maxWidth == 'flex' {
+    align-items: $align-items;
+    justify-content: $justify-content;
+    flex-direction: $flex-direction;
+  }
+}
