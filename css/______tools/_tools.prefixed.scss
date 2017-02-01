@@ -1,5 +1,5 @@
 // prefix declarations
-@mixin prefixed($property, $value) {
+@mixin _prefixed($property, $value) {
   @if $webkit == true {
     -webkit-#{$property}: #{$value};
   }
@@ -21,7 +21,7 @@
 
 
 // prefix keyframes
-@mixin keyframes($name) {
+@mixin _keyframes($name) {
   @if $webkit == true {
     @-webkit-keyframes #{$name} {
       @content;

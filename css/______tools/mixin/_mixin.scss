@@ -1,10 +1,13 @@
-@import 'font-size';
-@import 'typography';
-@import 'icons';
+@import 'mixin.font-size';
+@import 'mixin.typography';
+@import 'mixin.icons';
+@import 'mixin.transition';
 
-@import 'reset';
-@import 'clearfix';
-@import 'links';
-@import 'display-flex';
+@import 'mixin.reset';
+@import 'mixin.clearfix';
+@import 'mixin.links';
+@import 'mixin.display-flex';
+@import 'mixin.respond-to';
 
-@import 'grid';
+@import 'mixin.fluid-type';
+@import 'mixin.grid';

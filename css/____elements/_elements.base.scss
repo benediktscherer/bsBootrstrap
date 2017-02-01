@@ -1,0 +1,16 @@
+/* ================================ *\
+    BODY / HTML
+\* ================================ */
+body{
+  position: relative;
+  @include _paragraph();
+
+  @include _grid-bootstrap();
+}
+
+p{
+  margin: 0;
+  padding: 0;
+
+  @include _paragraph();
+}

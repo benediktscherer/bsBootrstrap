@@ -1,16 +1,29 @@
-@mixin _grid-bootstrap($gutter-width: $grid-gutter-width, $grid-columns: $grid-amount-columns, $container-width-max: $grid-container-width){
+/* ================================ *\
+
+    Create Twitter Bootstrap Grid
+    @include _grid-bootstrap(30px, 12);
+
+\* ================================ */
+@mixin _grid-bootstrap($gutter-width: $grid-gutter-width, $grid-columns: $grid-amount-columns){
   .container{
     margin: 0 auto;
     position: relative;
-    width: $container-width-max;
+    padding-left:  ($grid-gutter-width / 2);
+    padding-right: ($grid-gutter-width / 2);
     @include _clearfix();
+
+    @include _respond-to(tablets){ width: $container-tablet; }
+    @include _respond-to(desktop){ width: $container-desktop; }
+    @include _respond-to(large){ width: $container-large; }
   }
+
 
   .row {
     margin-left:  ($gutter-width / -2);
     margin-right: ($gutter-width / -2);
-    @include clearfix();
+    @include _clearfix();
   }
+
 
   $i: 1;
   $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";

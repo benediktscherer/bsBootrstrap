@@ -1,0 +1,8 @@
+/* ================================ *\
+    Headlines
+\* ================================ */
+h1{
+  margin: 0;
+  padding: 0;
+  @include _headline($font-size-1, $color-headline);
+}

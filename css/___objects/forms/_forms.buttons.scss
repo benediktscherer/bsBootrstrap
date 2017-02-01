@@ -1,0 +1,94 @@
+%_btn-style{
+  position: relative;
+  width: auto;
+  margin: 15px 0 0 0;
+  padding: 10px 20px;
+
+  @include _display-flex(inline-flex, center, center, column);
+  @include _transition(all);
+
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  @include _prefixed(user-select, none);
+
+  touch-action: manipulation;
+  cursor: pointer;
+
+  @include _link-default(){
+    text-decoration: none;
+  }
+
+  @include _link-active(){
+    text-decoration: none;
+  }
+
+  &:disabled,
+  &.disabled{
+    cursor: default;
+    opacity: 0.2;
+  }
+
+  &.continue{
+    padding-right: 30px;
+    &:after{
+      position: absolute;
+      right: 10px;
+      top: 0;
+      height: 100%;
+      @include _display-flex(flex, center);
+
+      font-size: $font-size-icon;
+      @extend %_icon-angle-right;
+    }
+  }
+}
+
+
+// =================================
+// Default Button
+.btn-default{
+  @extend %_btn-style;
+
+  @include _link-default(){
+    @include _button($font-size-paragraph, $color-white);
+    background-color: $color-primary;
+  }
+
+  @include _link-active(){
+    background: darken($color-primary, 5%);
+  }
+}
+
+//
+// Call To Action
+.btn-cta{
+  @extend %_btn-style;
+
+  @include _link-default(){
+    @include _button($font-size-paragraph, $color-white);
+    background-color: $color-secondary;
+  }
+
+  @include _link-active(){
+    background: darken($color-secondary, 5%);
+  }
+}
+
+//
+// Classic Bordered Button
+.btn-bordered{
+  @extend %_btn-style;
+  border: 1px solid $color-headline;
+
+  @include _link-default(){
+    @include _button($font-size-paragraph, $color-headline);
+    background-color: $color-white;
+  }
+
+  @include _link-active(){
+    color: lighten($color-headline, 5%);
+    border-color: lighten($color-headline, 5%);
+    background-color: fade_out($color-headline, 0.95);
+  }
+}

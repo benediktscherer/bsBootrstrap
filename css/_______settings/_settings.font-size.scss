@@ -7,13 +7,17 @@ $font-size-paragraph-max: $font-size-paragraph-min * 1.5;
 $font-size-headline-min: 14px;
 $font-size-headline-max: $font-size-headline-min * 1.5;
 
-$font-size-1: 42px;
-$font-size-2: 34px;
-$font-size-3: 28px;
-$font-size-4: 18px;
+$font-size-1: 28px;
+$font-size-2: 24px;
+$font-size-3: 22px;
+$font-size-4: 18px; // paragraph
 $font-size-5: 16px;
 $font-size-6: 14px;
 $font-size-7: 12px;
 
+  $font-size-paragraph: $font-size-4;
+
 $font-size-small: 10px;
 $font-size-big:   28px;
+
+$font-size-icon: 22px;

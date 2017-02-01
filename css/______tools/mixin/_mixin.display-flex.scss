@@ -8,7 +8,7 @@
 @mixin _display-flex($type: flex, $align-items: center, $justify-content: flex-start, $flex-direction: row){
   display: $type;
 
-  @if $maxWidth == 'flex' {
+  @if $type == 'flex' or $type == 'inline-flex' {
     align-items: $align-items;
     justify-content: $justify-content;
     flex-direction: $flex-direction;
