@@ -13,7 +13,7 @@
     @include _clearfix();
 
     @include _respond-to(tablets){ width: $container-tablet; }
-    @include _respond-to(desktop){ width: $container-desktop; }
+    @include _respond-to(desktops){ width: $container-desktop; }
     @include _respond-to(large){ width: $container-large; }
   }
 
