@@ -1,4 +1,20 @@
 /* ================================ *\
+            Font Family
+\* ================================ */
+$font: (
+  'primary': (
+    'regular': 'Cambria, Georgia, serif',
+    'bold': 'Cambria, Georgia, serif'
+  ),
+  'secondary': (
+    'regular': 'Arial, "Helvetica Neue", sans-serif',
+    'light': 'Arial, "Helvetica Neue", sans-serif',
+    'bold': 'Arial, "Helvetica Neue", sans-serif'
+  )
+);
+
+
+/* ================================ *\
             Font Size
 \* ================================ */
 $font-size-paragraph-min: 14px;

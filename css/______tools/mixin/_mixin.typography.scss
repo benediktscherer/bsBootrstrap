@@ -7,8 +7,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@mixin _headline($font-size: $font-size-2, $color: $color-headline){
-  @include font-light();
+
+@mixin _font-primary($font-size: $font-size-2, $color: $color-headline){
+  font-family: map_get($font, 'primary');
+  font-style: normal;
+  font-weight: 300;
+
   @include _font-size($font-size, $font-size * 1.5);
   line-height: 1.2;
   color: $color;
@@ -16,8 +20,11 @@
   @extend %_text-rendering;
 }
 
-@mixin _paragraph($font-size: $font-size-5, $color: $color-paragraph){
-  @include font-regular();
+@mixin _font-secondary($font-size: $font-size-5, $color: $color-paragraph){
+  font-family: map_get($font, 'secondary');
+  font-style: normal;
+  font-weight: 300;
+
   @include _font-size($font-size, $font-size * 1.5);
   line-height: 1.3;
   color: $color;
@@ -29,6 +36,19 @@
     @include font-bold();
   }
 }
+
+
+// SHORTHAND
+// ================================
+@mixin _font-headline($font-size: $font-size-2, $color: $color-headline){
+  @include _font-primary($font-size, $color)
+}
+
+@mixin _font-paragraph($font-size: $font-size-5, $color: $color-paragraph){
+  @include _font-secondary($font-size, $color)
+}
+
+
 
 @mixin _button($font-size: $font-size-5, $color: $color-paragraph){
   @include font-bold();

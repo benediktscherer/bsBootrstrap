@@ -1,26 +1,16 @@
 /* ================================ *\
     Fonts
 \* ================================ */
-$font-light: Arial, 'Helvetica Neue', sans-serif !default;
-$font-regular: Arial, 'Helvetica Neue', sans-serif !default;
-$font-bold: Arial, 'Helvetica Neue', sans-serif !default;
-
-@mixin font-light(){
-  font-family: $font-light;
+%_font-primary{
+  font-family: map_get($font, 'primary');
   font-style: normal;
   font-weight: 300;
 }
 
-@mixin font-regular(){
-  font-family: $font-regular;
+%_font-secondary{
+  font-family: map_get($font, 'secondary');
   font-style: normal;
-  font-weight: 400;
-}
-
-@mixin font-bold(){
-  font-family: $font-bold;
-  font-style: normal;
-  font-weight: 700;
+  font-weight: 300;
 }
 
 

@@ -3,7 +3,7 @@
 \* ================================ */
 body{
   position: relative;
-  @include _paragraph();
+  @include _font-paragraph();
 
   @include _grid-bootstrap();
 }
@@ -12,5 +12,5 @@ p{
   margin: 0;
   padding: 0;
 
-  @include _paragraph();
+  @include _font-paragraph();
 }
