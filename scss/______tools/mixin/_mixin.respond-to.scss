@@ -29,13 +29,16 @@
   @else if index($media, large) {
     @media (min-width: $breakpoint-desktop-max) { @content; }
   }
+
+    // Browser hack
+  @else if index($media, ie) {
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      @content;
+    }
+  }
+  @else if index($media, ff) {
+    @-moz-document url-prefix() {
+      @content;
+    }
+  }
 }
-
-
-/*
-0      480             1024        1336           ∞
-|=======|===============|============|============= >
-xs      sm              md           lg
-phone   tablet          desktop      desktop-large
-mobile
-*/
