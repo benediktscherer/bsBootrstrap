@@ -1,99 +1,92 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+	// Project configuration.
+	grunt.initConfig({
+		pkg: grunt.file.readJSON('package.json'),
 
-    conf: {
-        cssCwd: 'css',
-        cssDest: 'css',
-        
-        jsCwd: 'js',
-        jsDest: 'js'
-    },
+		conf: {
+			cssCwd: 'scss',
+			cssDest: 'public/css',
 
-    // combine javascript
-    // ===================================
-    concat: {
-      options: {
-        stripBanners: false,
-      },
-      js: {
-        src: ['<%= conf.jsCwd %>/*.js', '<%= conf.jsCwd %>/helper/*.js', '!<%= conf.jsCwd %>/script.js'],
-        dest: '<%= conf.jsDest %>/script.js'
-      }
-    },
+			jsCwd: 'scripts',
+			jsDest: 'public/js'
+		},
 
-    min: {
-      dist: {
-        src: ['<%= conf.jsDest %>/script.js'],
-        dest: '<%= conf.jsDest %>/script.min.js'
-      }
-    },
+		// combine javascript
+		// ===================================
+		uglify: {
+			libraries: {
+				files: [{
+					src: [
+						// "<%= conf.jsCwd %>/libraries/jquery/dist/jquery.js"
+					],
+					dest: "<%= conf.jsDest %>/libraries.min.js"
+				}]
+			},
 
+			components: {
+				files: [{
+					src: [
+						"<%= conf.jsCwd %>/helper/*.js"
+					],
+					dest: "<%= conf.jsDest %>/components.min.js"
+				}]
+			},
 
-    // compile sass > css > css.min
-    // ==================================
-    sass: {
-      dist: {
-        options: {
-          sourceMap: false,
-          outputStyle: 'compressed',
-          includePaths: ['<%= conf.cssCwd %>/']
-        },
+			app: {
+				files: [{
+					src: [
+						'<%= conf.jsCwd %>/*.js'
+					],
+					dest: "<%= conf.jsDest %>/app.min.js"
+				}]
+			}
+		},
 
-        files: [{
-          expand: true,
-          cwd: '<%= conf.cssCwd %>/',
-          src: ['app.scss'],
-          dest: '<%= conf.cssDest %>/',
-          ext: '.css'
-        }]
-      }
-    },
+		// compile sass
+		// ==================================
+		sass: {
+			dist: {
+				options: {
+					sourceMap: false,
+					outputStyle: 'compressed',
+					includePaths: ['<%= conf.cssCwd %>/']
+				},
 
-    cssmin: {
-      options: {
-        shorthandCompacting: false,
-        roundingPrecision: -1
-      },
-      target: {
-        files: [{
-          expand: true,
-          cwd: '<%= conf.cssCwd %>/',
-          src: ['*.css'],
-          dest: '<%= conf.cssDest %>/',
-          ext: '.min.css'
-        }]
-      }
-    },
+				files: [{
+					expand: true,
+					cwd: '<%= conf.cssCwd %>/',
+					src: ['app.scss'],
+					dest: '<%= conf.cssDest %>/',
+					ext: '.css'
+				}]
+			}
+		},
 
 
-    // ===================================
-    watch: {
-      scripts: {
-        files: ['<%= conf.cssCwd %>/**/*.scss', '<%= conf.jsCwd %>/*.js'],
-        tasks: ['sass', 'concat:js'],
-        options: {
-          spawn: false,
-        },
-      },
-    }
-  });
+		// ===================================
+		watch: {
+			scripts: {
+				files: ['<%= conf.cssCwd %>/**/*.scss', '<%= conf.jsCwd %>/*.js'],
+				tasks: ['sass', 'concat:js'],
+				options: {
+					spawn: false
+				}
+			}
+		}
+	});
 
 
-  // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-min');
-  grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+	// Load the plugin that provides the "uglify" task.
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-min');
+	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks("grunt-contrib-uglify");
 
 
-  // Define Task(s)
-  grunt.registerTask('default', 'sass');
-  grunt.registerTask('dev', ['sass', 'concat', 'watch']);
-  grunt.registerTask('live', ['sass', 'cssmin', 'concat', 'min']);
-
-
+	// Define Task(s)
+	grunt.registerTask('default', 'sass', 'uglify');
+	grunt.registerTask('dev', ['sass', 'uglify', 'watch']);
 };
