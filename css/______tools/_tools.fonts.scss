@@ -1,21 +1,5 @@
 /* ================================ *\
-    Fonts
-\* ================================ */
-%_font-primary{
-  font-family: map_get($font, 'primary');
-  font-style: normal;
-  font-weight: 300;
-}
-
-%_font-secondary{
-  font-family: map_get($font, 'secondary');
-  font-style: normal;
-  font-weight: 300;
-}
-
-
-/* ================================ *\
-    Icon Fonts
+    Fonts Include
 \* ================================ */
 @font-face {
   font-family: 'FontAwesome';
