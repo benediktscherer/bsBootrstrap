@@ -39,7 +39,6 @@
       @include _display-flex(flex, center);
 
       font-size: $font-size-icon;
-      @extend %_icon-angle-right;
     }
   }
 }

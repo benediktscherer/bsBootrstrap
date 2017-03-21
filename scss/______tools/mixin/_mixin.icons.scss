@@ -3,92 +3,59 @@
     Icons
 
     a:before{
-      @extend %_icon-check;
+      @include _getIcon('check');
     }
 
+    <i data-icon="check"></i>
+
 \* ================================ */
-%_icon-style{
-  display: inline-block;
+@mixin _icon-style($type: FontAwesome, $width: 20px, $height: 20px) {
+	display: inline-block;
 
-  font-family: FontAwesome;
-  line-height: 1;
-  font-size: inherit;
-  font-weight: normal;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	line-height: 1;
+	speak: none;
+	text-transform: none;
 
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	@if $type == 'icomoon' {
+		font-family: 'icomoon';
+	}
+	@else if $type == 'FontAwesome' {
+		font-family: FontAwesome;
+	}
+	@else if $type == 'background-image' {
+		content: '';
+		width: $width;
+		height: $height;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		background-color: transparent;
+	}
 }
 
-
-
-%_icon-plus{
-  @extend %_icon-style;
-  content: '\f067';
-}
-
-%_icon-minus{
-  @extend %_icon-style;
-  content: '\f068';
-}
-
-%_icon-check{
-  @extend %_icon-style;
-  content: "\f00c";
-}
-
-%_icon-close{
-  @extend %_icon-style;
-  content: '\f00d';
-}
-
-%_icon-search{
-  @extend %_icon-style;
-  content: '\f002';
-}
 
 //
-// Angles & Arrow
-// ------------------------
-// ARROWs
+// add icons by html-data-tag
 // --------------------------
-%_icon-caret-right{
-  @extend %_icon-style;
-  content: '\f0da';
+@each $key, $value in $iconMap {
+	[data-icon="#{$key}"]:before {
+		@include _icon-style(icomoon);
+		content: $value;
+	}
 }
 
-%_icon-caret-down{
-  @extend %_icon-style;
-  content: '\f0d7';
-}
 
-%_icon-caret-up{
-  @extend %_icon-style;
-  content: '\f0d8';
-}
-
-%_icon-angle-up{
-  @extend %_icon-style;
-  content: '\f106';
-}
-%_icon-angle-down{
-  @extend %_icon-style;
-  content: '\f107';
-}
-%_icon-angle-right{
-  @extend %_icon-style;
-  content: '\f105';
-}
-%_icon-angle-left  {
-  @extend %_icon-style;
-  content: '\f104';
-}
-
-%_icon-arrow-up{
-  @extend %_icon-style;
-  content: '\f176';
-}
-%_icon-arrow-down{
-  @extend %_icon-style;
-  content: '\f175';
+//
+// add icons by @mixin
+// --------------------------
+@mixin _getIcon($icon){
+	@include _icon-style(icomoon);
+	content: map_get($iconMap, $icon);
 }
