@@ -1,0 +1,44 @@
+/* ================================ *\
+
+    Add Triangle
+    &:before{
+    	@include _triangle(top, #f00, 12px);
+    }
+
+\* ================================ */
+@mixin _triangle($dir, $color, $size) {
+	content: '';
+	width: 0;
+	height: 0;
+	border: $size transparent solid;
+
+	@if ($dir == "top" or $dir == "up") {
+		border-bottom-color: $color;
+	}
+	@else if ($dir == "right" or $dir == "after") {
+		border-left-color: $color;
+	}
+	@else if ($dir == "bottom" or $dir == "down") {
+		border-top-color: $color;
+	}
+	@else if ($dir == "left" or $dir == "before") {
+		border-right-color: $color;
+	}
+
+	@else if ($dir == "top-left") {
+		border-top-color: $color;
+		border-width: $size $size 0 0;
+	}
+	@else if ($dir == "top-right") {
+		border-right-color: $color;
+		border-width: 0 $size $size 0;
+	}
+	@else if ($dir == "bottom-left") {
+		border-left-color: $color;
+		border-width: $size 0 0 $size;
+	}
+	@else if ($dir == "bottom-right") {
+		border-bottom-color: $color;
+		border-width: 0 0 $size $size;
+	}
+}
