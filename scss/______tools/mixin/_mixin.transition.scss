@@ -7,3 +7,11 @@
   -moz-transition: $object $duration $transition .1s;
   -o-transition: $object $duration $transition .1s;
 }
+
+@mixin _transition-delay($amount: 10, $duration: 0.05s){
+  @for $i from 1 through $amount {
+    &:nth-child(#{$i}) {
+      transition-delay: ($duration * $i);
+    }
+  }
+}
