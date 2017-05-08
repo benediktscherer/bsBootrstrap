@@ -63,6 +63,16 @@ module.exports = function (grunt) {
 			}
 		},
 
+		postcss: {
+			options: {
+				processors: [
+					require('autoprefixer')({browsers: 'last 2 versions, safari 8'}) // add vendor prefixes
+				]
+			},
+			dist: { // = distPortal
+				src: '<%= conf.cssDest %>/*.css'
+			}
+		},
 
 		// ===================================
 		watch: {
@@ -87,6 +97,6 @@ module.exports = function (grunt) {
 
 
 	// Define Task(s)
-	grunt.registerTask('default', 'sass', 'uglify');
+	grunt.registerTask('default', 'sass', 'postcss', 'uglify');
 	grunt.registerTask('dev', ['sass', 'uglify', 'watch']);
 };
