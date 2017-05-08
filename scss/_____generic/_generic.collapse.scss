@@ -1,0 +1,14 @@
+.collapse{
+  &.collapsing{
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition-property: height, visibility;
+    transition-duration: 0.35s;
+    transition-timing-function: ease;
+  }
+
+  &.in{
+
+  }
+}
