@@ -9,53 +9,41 @@
     <i data-icon="check"></i>
 
 \* ================================ */
-@mixin _icon-style($type: FontAwesome, $width: 20px, $height: 20px) {
-	display: inline-block;
-
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	line-height: 1;
-	speak: none;
-	text-transform: none;
-
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-
-	@if $type == 'icomoon' {
-		font-family: 'icomoon';
-	}
-	@else if $type == 'FontAwesome' {
-		font-family: FontAwesome;
-	}
-	@else if $type == 'background-image' {
-		content: '';
-		width: $width;
-		height: $height;
-		background-repeat: no-repeat;
-		background-size: cover;
-		background-position: center;
-		background-color: transparent;
-	}
+@mixin _icon-rendering {
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+@mixin _icon-style($width: 20px, $height: 20px) {
+  display: inline-block;
+
+  font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
+
+  @include _icon-rendering;
+
+}
 
 //
 // add icons by html-data-tag
 // --------------------------
 @each $key, $value in $iconMap {
-	[data-icon="#{$key}"]:before {
-		@include _icon-style(icomoon);
-		content: $value;
-	}
+  [data-icon="#{$key}"]:before {
+    @include _icon-style();
+    content: $value;
+  }
 }
-
 
 //
 // add icons by @mixin
 // --------------------------
-@mixin _getIcon($icon){
-	@include _icon-style(icomoon);
-	content: map_get($iconMap, $icon);
+@mixin _getIcon($icon) {
+  @include _icon-style();
+  content: map_get($iconMap, $icon);
 }

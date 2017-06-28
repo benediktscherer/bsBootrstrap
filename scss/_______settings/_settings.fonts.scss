@@ -1,10 +1,10 @@
 /* ================================ *\
             Font Family
 \* ================================ */
-$font: (
-  'primary': 'Cambria, Georgia, serif',
-  'secondary': 'Arial, "Helvetica Neue", sans-serif'
-);
+$font-primary: 'Cambria, Georgia, serif';
+$font-secondary: 'Arial, "Helvetica Neue", sans-serif';
+
+$font-button: $font-secondary;
 
 $font-weight-bold: 700;
 

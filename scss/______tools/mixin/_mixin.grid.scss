@@ -39,3 +39,30 @@
     padding-right: ($gutter-width / 2);
   }
 }
+
+
+@mixin _grid-flex($col: null){
+  @include _display-flex(flex, null, flex-start, column);
+  > *{ margin-bottom: $spacing-bt; }
+
+  @include _respond-to(desktops){
+    @include _display-flex(flex, flex-start, flex-start, row);
+
+    @if($col) {
+      flex-wrap: wrap;
+    }
+
+    > * {
+      flex: 1;
+      margin-right: $spacing-lr;
+
+      @if($col) {
+        flex: 0 0 calc(#{map_get($grid, $col)} - #{$spacing-lr} / 2);
+        &:nth-child(#{$col}n) {margin-right: 0;}
+      }
+
+      &:last-child{ margin-right: 0; }
+    }
+
+  }
+}
