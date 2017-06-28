@@ -37,7 +37,7 @@
 
 // more ...
 // ================================
-@mixin _button($font-size: $font-size-5, $color: $color-paragraph) {
+@mixin _font-button($font-size: $font-size-5, $color: $color-paragraph) {
 	font-family: $font-button;
 	font-style: normal;
 	font-weight: $font-weight-bold;
