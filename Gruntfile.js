@@ -1,5 +1,7 @@
 module.exports = function (grunt) {
 
+	require('time-grunt')(grunt);
+
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -66,7 +68,8 @@ module.exports = function (grunt) {
 		postcss: {
 			options: {
 				processors: [
-					require('autoprefixer')({browsers: 'last 2 versions, safari 8'}) // add vendor prefixes
+					require('autoprefixer')({browsers: 'last 2 versions, safari 8'}), // add vendor prefixes
+					require('postcss-discard-comments')({removeAll: true}) // remove comments
 				]
 			},
 			dist: { // = distPortal
@@ -88,15 +91,17 @@ module.exports = function (grunt) {
 
 
 	// Load the plugin that provides the "uglify" task.
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-min');
-	grunt.loadNpmTasks('grunt-sass');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks("grunt-composer");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks('grunt-postcss');
 
 
 	// Define Task(s)
-	grunt.registerTask('default', 'sass', 'postcss', 'uglify');
-	grunt.registerTask('dev', ['sass', 'uglify', 'watch']);
+	grunt.registerTask('default', 'composer:install', 'dev');
+
+	grunt.registerTask('dev', ['sass', 'postcss', 'uglify', 'watch']);
+	grunt.registerTask('composer', 'composer:install');
 };
