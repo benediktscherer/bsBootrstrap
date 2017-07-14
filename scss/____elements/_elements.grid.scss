@@ -1,0 +1,6 @@
+// Create Teaser Grid
+@each $type, $size in $grid {
+  [data-grid="#{$type}"] {
+    @include _grid-flex($type);
+  }
+}

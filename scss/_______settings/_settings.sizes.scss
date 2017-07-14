@@ -1,3 +1,33 @@
+/* ================================ *\
+    Breakpoints
+\* ================================ */
+$breakpoint-mobile-max: 480px;
+
+$breakpoint-tablet-min: $breakpoint-mobile-max + 1px;
+$breakpoint-tablet-max: 1024px;
+
+$breakpoint-desktop-min: $breakpoint-tablet-max + 1px;
+$breakpoint-desktop-max: 1336px;
+
+// helper
+// --------
+$screen-xs: 320px !default; // not in use
+$screen-sm: $breakpoint-tablet-min !default;
+$screen-md: $breakpoint-desktop-min !default;
+$screen-lg: $breakpoint-desktop-max !default;
+
+/* ================================ *\
+    Grid Sizes
+\* ================================ */
+$grid-container-width: 970px;
+$grid-amount-columns: 12;
+$grid-gutter-width: 30px;
+
+$container-tablet: (720px + $grid-gutter-width) !default;
+$container-desktop: (940px + $grid-gutter-width) !default;
+$container-large: (1140px + $grid-gutter-width) !default;
+
+
 $spacing-lr: 10px;
 $spacing-bt: 10px;
 
