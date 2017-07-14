@@ -1,16 +1,13 @@
 /* ================================ *\
-    
+
     Display: flex
-    @include _display-flex(flex, center, center, row);
-    @include _display-flex(block);
+    @include _display-flex(flex, center, center, row, nowrap);
 
 \* ================================ */
-@mixin _display-flex($type: flex, $align-items: center, $justify-content: flex-start, $flex-direction: row){
+@mixin _display-flex($type: flex, $align-items: center, $justify-content: null, $flex-direction: null, $flex-wrap: null){
   display: $type;
-
-  @if $type == 'flex' or $type == 'inline-flex' {
-    align-items: $align-items;
-    justify-content: $justify-content;
-    flex-direction: $flex-direction;
-  }
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
 }

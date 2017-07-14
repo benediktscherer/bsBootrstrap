@@ -41,6 +41,26 @@
 }
 
 
+/* ================================ *\
+
+    Set margin for child elem.
+    in lists / grid
+
+\* ================================ */
+@mixin _list-child-margin($margin-right: $spacing-lr){
+  margin-right: $margin-right;
+
+  &:last-child{
+    margin-right: 0;
+  }
+}
+
+
+/* ================================ *\
+
+    Custom Flex Grid
+
+\* ================================ */
 @mixin _grid-flex($col: null){
   @include _display-flex(flex, null, flex-start, column);
   > *{ margin-bottom: $spacing-bt; }
@@ -54,15 +74,17 @@
 
     > * {
       flex: 1;
-      margin-right: $spacing-lr;
+      @include _list-child-margin();
 
       @if($col) {
-        flex: 0 0 calc(#{map_get($grid, $col)} - #{$spacing-lr} / 2);
-        &:nth-child(#{$col}n) {margin-right: 0;}
+        flex: 0 0 calc(#{map_get($grid, $col)} - #{$spacing-lr} );
+        &:nth-child(#{$col}n) {
+          margin-right: 0;
+          flex-basis: #{map_get($grid, $col)}
+        }
       }
-
-      &:last-child{ margin-right: 0; }
     }
 
   }
 }
+
