@@ -1,19 +1,28 @@
 /* ================================ *\
-            Font Size by
-    https://madebymike.com.au/writing/fluid-type-calc-examples/
+            Font Size
+
+	alternativ:
+	https://madebymike.com.au/writing/fluid-type-calc-examples/
+
 \* ================================ */
-@mixin _font-size($min-value: $font-size-paragraph-min, $max-value: $font-size-paragraph-max) {
-  font-size: $min-value;
+@mixin _font-size($phones, $tablet: null, $desktop: null, $wide: null) {
+	font-size: $phones;
 
-  //@media screen and (min-width: $breakpoint-mobile-max) {
-  //  font-size: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$breakpoint-mobile-max}) / #{strip-unit($breakpoint-desktop-max - $breakpoint-mobile-max)});
-  //}
-  //
-  //@media screen and (min-width: $breakpoint-desktop-max) {
-  //  font-size: $max-value;
-  //}
-}
+	@if ($tablet) {
+		@include respond-to(tablets, desktops, wide) {
+			font-size: $tablet;
+		}
+	}
 
-@function strip-unit($value) {
-  @return $value / ($value * 0 + 1);
+	@if ($desktop) {
+		@include respond-to(desktops, wide) {
+			font-size: $desktop;
+		}
+	}
+
+	@if ($wide) {
+		@include respond-to(wide) {
+			font-size: $wide;
+		}
+	}
 }

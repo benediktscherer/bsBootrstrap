@@ -61,12 +61,12 @@
     Custom Flex Grid
 
 \* ================================ */
-@mixin _grid-flex($col: null){
+@mixin _grid-flex($col: null, $valign: flex-start, $spacing: $spacing-lr){
   @include _display-flex(flex, null, flex-start, column);
   > *{ margin-bottom: $spacing-bt; }
 
-  @include _respond-to(desktops){
-    @include _display-flex(flex, flex-start, flex-start, row);
+  @include _respond-to(desktops, wide){
+    @include _display-flex(flex, $valign, flex-start, row);
 
     @if($col) {
       flex-wrap: wrap;
@@ -74,10 +74,10 @@
 
     > * {
       flex: 1;
-      @include _list-child-margin();
+      @include _list-child-margin($spacing);
 
       @if($col) {
-        flex: 0 0 calc(#{map_get($grid, $col)} - #{$spacing-lr} );
+        flex: 0 0 calc(#{map_get($grid, $col)} - #{$spacing} );
         &:nth-child(#{$col}n) {
           margin-right: 0;
           flex-basis: #{map_get($grid, $col)}
