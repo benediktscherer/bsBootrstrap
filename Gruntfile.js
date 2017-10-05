@@ -25,7 +25,7 @@ module.exports = function (grunt) {
 				// "devFile": "/PATH/TO/modernizr-dev.js",
 				"dest": "<%= conf.jsCwd %>/libraries/modernizr-output.js",
 				"tests": [
-					// Tests
+					"touchevents"
 				],
 				"options": [
 					"setClasses"
