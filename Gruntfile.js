@@ -10,17 +10,39 @@ module.exports = function (grunt) {
 			cssCwd: 'scss',
 			cssDest: 'public/css',
 
+			vendorCwd: 'vendor/components',
 			jsCwd: 'scripts',
 			jsDest: 'public/js'
 		},
 
-		// combine javascript
-		// ===================================
+		/**
+		 * Modernizr
+		 */
+		modernizr: {
+			dist: {
+				"parseFiles": true,
+				"customTests": [],
+				// "devFile": "/PATH/TO/modernizr-dev.js",
+				"dest": "<%= conf.jsCwd %>/libraries/modernizr-output.js",
+				"tests": [
+					// Tests
+				],
+				"options": [
+					"setClasses"
+				],
+				"uglify": true
+			}
+		},
+
+		/**
+		 * Combine Javascript
+		 */
 		uglify: {
 			libraries: {
 				files: [{
 					src: [
-						// "<%= conf.jsCwd %>/libraries/jquery/dist/jquery.js"
+						"<%= conf.vendorCwd %>/jquery/jquery.min.js",
+						"<%= conf.jsCwd %>/libraries/modernizr-output.js"
 					],
 					dest: "<%= conf.jsDest %>/libraries.min.js"
 				}]
@@ -45,8 +67,9 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// compile sass
-		// ==================================
+		/**
+		 * Compile Sass
+		 */
 		sass: {
 			dist: {
 				options: {
@@ -60,7 +83,7 @@ module.exports = function (grunt) {
 					cwd: '<%= conf.cssCwd %>/',
 					src: ['app.scss'],
 					dest: '<%= conf.cssDest %>/',
-					ext: '.css'
+					ext: '.min.css'
 				}]
 			}
 		},
@@ -77,7 +100,9 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// ===================================
+		/**
+		 * Watch Tasks
+		 */
 		watch: {
 			scripts: {
 				files: ['<%= conf.cssCwd %>/**/*.scss', '<%= conf.jsCwd %>/*.js'],
@@ -96,11 +121,12 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-postcss');
+	grunt.loadNpmTasks("grunt-modernizr");
 
 
 	// Define Task(s)
-	grunt.registerTask('default', 'composer:install', 'dev');
+	grunt.registerTask('default', 'composer:install', 'modernizr', 'uglify', 'sass', 'postcss');
 
-	grunt.registerTask('dev', ['sass', 'postcss', 'uglify', 'watch']);
+	grunt.registerTask('dev', ['default', 'watch']);
 	grunt.registerTask('composer', 'composer:install');
 };

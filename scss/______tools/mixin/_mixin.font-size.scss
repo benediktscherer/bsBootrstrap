@@ -9,19 +9,19 @@
 	font-size: $phones;
 
 	@if ($tablet) {
-		@include respond-to(tablets, desktops, wide) {
+		@include _respond-to(tablets, desktops, wide) {
 			font-size: $tablet;
 		}
 	}
 
 	@if ($desktop) {
-		@include respond-to(desktops, wide) {
+		@include _respond-to(desktops, wide) {
 			font-size: $desktop;
 		}
 	}
 
 	@if ($wide) {
-		@include respond-to(wide) {
+		@include _respond-to(wide) {
 			font-size: $wide;
 		}
 	}

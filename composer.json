@@ -1,6 +1,6 @@
 {
   "name": "benediktscherer/bsBootstrap",
-  "description": "Boilerplate for Web Developing",
+  "description": "Boilerplate for Web Development",
   "homepage": "https://www.benedikt-scherer.de",
   "authors": [
     {
@@ -13,5 +13,6 @@
     "vendor-dir": "vendor"
   },
   "require": {
+    "components/jquery": "^3.2"
   }
 }

@@ -15,7 +15,7 @@ var DetectDeviceHelper = function(){
   this.$div = jQuery('.detect_device div:visible');
 };
 
-DetectDeviceHelper.init = function(){
+DetectDeviceHelper.prototype.init = function(){
 	var device = this.$div.attr('data-device');
 
 	$('body').addClass( device );
