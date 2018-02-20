@@ -1,0 +1,15 @@
+/**
+  Move a curtain in
+ */
+@mixin _curtainToggleAnimation($offset: -70vh, $duration: .3s, $class: '-in', $direction: 'Y') {
+    @include _transition(all, $duration);
+    opacity: 0;
+    visibility: hidden;
+    transform: #{'translate' + $direction + '(' + $offset + ')'};
+
+    &.#{$class} {
+        opacity: 1;
+        visibility: visible;
+        transform: #{'translate' + $direction + '(0)'};
+    }
+}
