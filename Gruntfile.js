@@ -8,7 +8,7 @@ module.exports = function (grunt) {
 
         vendorCwd: 'vendor/components/',
         jsCwd: 'scripts/',
-        jsDest: 'public/js'
+        jsDest: 'public/js/'
     };
 
     // Project configuration.
