@@ -20,6 +20,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-modernizr": "^1.0.2",
     "grunt-postcss": "^0.8.0",
+    "grunt-sassdoc": "^2.0.2",
     "grunt-sass": "^2.0.0",
     "postcss-discard-comments": "^2.0.4",
     "time-grunt": "^1.4.0"
