@@ -1,16 +1,12 @@
 /* ================================ *\
     BODY / HTML
 \* ================================ */
-body{
-  position: relative;
-  @include _font-paragraph();
-
-  @include _grid-bootstrap();
+body {
+    position: relative;
+    @include _font-paragraph();
 }
 
-p{
-  margin: 0;
-  padding: 0;
-
-  @include _font-paragraph();
+p {
+    @include _reset-alignment();
+    @include _font-paragraph();
 }

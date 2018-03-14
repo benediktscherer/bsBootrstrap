@@ -1,0 +1,16 @@
+/// Build flex Item
+/// @access public
+/// @param {string} $type [flex]
+/// @param {string} $align-items [center] - vertical alignment
+/// @param {string} $justify-content [null] - horizontal alignment
+/// @param {string} $flex-direction [null] direction
+/// @param {string} $flex-wrap [null] row break
+/// @example
+///   @include _display-flex(flex, center, center, row, nowrap);
+@mixin _display-flex($type: flex, $align-items: center, $justify-content: null, $flex-direction: null, $flex-wrap: null){
+  display: $type;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
+}

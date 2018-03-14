@@ -1,0 +1,22 @@
+/// Move a curtain in
+/// @access public
+/// @group animation transition
+/// @param {string} $offset [-70vh] - start animation from
+/// @param {string} $duration [.3s] - duration of animation
+/// @param {string} $class ['-in'] - class for toggling
+/// @param {string} $direction ['Y'] - direction of animation
+/// @content show when element is visible
+@mixin _curtainToggleAnimation($offset: -70vh, $duration: .3s, $class: '-in', $direction: 'Y') {
+    @include _transition(all, $duration, ease-in-out);
+    opacity: 0;
+    visibility: hidden;
+    transform: #{'translate' + $direction + '(' + $offset + ')'};
+
+    &.#{$class} {
+        opacity: 1;
+        visibility: visible;
+        transform: #{'translate' + $direction + '(0)'};
+
+        @content;
+    }
+}

@@ -1,8 +1,11 @@
 /* ================================ *\
-    
-    link style
-
+   link style
 \* ================================ */
+
+/// Link styles for **default states**
+/// @group text
+/// @access public
+/// @content
 @mixin _link-default() {
   &:link,
   &:focus,
@@ -12,11 +15,13 @@
   }
 }
 
-
+/// Links styles for **hover state**
+/// @group text
+/// @access public
+/// @content
 @mixin _link-active() {
   &:hover,
-  &:focus{
+  &:focus {
     @content;
   }
-
 }

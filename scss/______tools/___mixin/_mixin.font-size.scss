@@ -1,0 +1,32 @@
+/* ================================ *\
+   Font Size
+\* ================================ */
+
+/// Set Font Size for different breakpoints
+/// @group Text
+/// @access public
+/// @param {string} $phones - font-size for all devices
+/// @param {string} $tablet [null] - font-size gt mobile view
+/// @param {string} $desktop [null] - font-size gt tablet view
+/// @param {string} $wide [null] - font-size gt desktop view
+@mixin _font-size($phones, $tablet: null, $desktop: null, $wide: null) {
+    font-size: $phones;
+
+    @if ($tablet) {
+        @include _respond-to(tablets, desktops, wide) {
+            font-size: $tablet;
+        }
+    }
+
+    @if ($desktop) {
+        @include _respond-to(desktops, wide) {
+            font-size: $desktop;
+        }
+    }
+
+    @if ($wide) {
+        @include _respond-to(wide) {
+            font-size: $wide;
+        }
+    }
+}

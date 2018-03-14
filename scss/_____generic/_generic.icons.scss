@@ -1,0 +1,6 @@
+@each $key, $value in $iconMap {
+    [data-icon="#{$key}"]:before {
+        @include _icon-style();
+        content: $value;
+    }
+}

@@ -1,6 +1,9 @@
-// Create Teaser Grid
+/**
+    Flex Grid
+    <div data-grid="3"> ... </div>
+ */
 @each $type, $size in $grid {
-  [data-grid="#{$type}"] {
-    @include _grid-flex($type);
-  }
+    [data-grid="#{$type}"] {
+        @include _grid-flex($type);
+    }
 }

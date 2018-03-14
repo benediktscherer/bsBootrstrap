@@ -1,0 +1,14 @@
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+/// find key in map
+/// @param {string} $map
+/// @param {string} $keys
+@function mg($map, $keys...) {
+  @return map-deep-get($map, $keys...)
+}

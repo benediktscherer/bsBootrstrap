@@ -1,13 +1,16 @@
 /* ================================ *\
             Font Family
 \* ================================ */
-$font-primary: 'Cambria, Georgia, serif';
-$font-secondary: 'Arial, "Helvetica Neue", sans-serif';
+$font-headline: 'Cambria, Georgia, serif';
+$font-paragraph: 'Arial, "Helvetica Neue", sans-serif';
 
-$font-button: $font-secondary;
+$font-button: $font-paragraph;
 
-$font-weight-bold: 700;
-
+$font-weight: (
+    "light": 100,
+    "regular": 300,
+    "bold": 700
+);
 
 /* ================================ *\
             Font Size
@@ -26,9 +29,9 @@ $font-size-5: 16px;
 $font-size-6: 14px;
 $font-size-7: 12px;
 
-  $font-size-paragraph: $font-size-4;
+$font-size-paragraph: $font-size-4;
 
 $font-size-small: 10px;
-$font-size-big:   28px;
+$font-size-big: 28px;
 
 $font-size-icon: 22px;

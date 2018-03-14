@@ -1,0 +1,12 @@
+/// Scale Forward on X-Axis
+/// @group animation keyframe
+@mixin _anim-scaleXForward() {
+    @include _keyframes('_scale-x-forward') {
+        0% {
+            transform: scaleX(0);
+        }
+        100% {
+            transform: scaleX(1);
+        }
+    }
+}

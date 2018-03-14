@@ -1,0 +1,7 @@
+/// Change Opaque in Background -> continue infinite
+/// @access public
+/// @group animation transition
+@mixin _backgroundFlimmern() {
+    animation: opaque 2s infinite linear;
+    animation-fill-mode: forwards;
+}

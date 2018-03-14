@@ -1,0 +1,105 @@
+/* ================================ *\
+   Browser Capabilities
+\* ================================ */
+
+/// Set Prefixes for Attributes
+/// @param {string} $property - css attribute
+/// @param {string} $value - css value
+@mixin _prefixed($property, $value) {
+  $webkit: true !default;
+  $moz: true !default;
+  $ms: true !default;
+  $o: true !default;
+
+  @if $webkit == true {
+    -webkit-#{$property}: #{$value};
+  }
+
+  @if $moz == true {
+    -moz-#{$property}: #{$value};
+  }
+
+  @if $ms == true {
+    -ms-#{$property}: #{$value};
+  }
+
+  @if $o == true {
+    -o-#{$property}: #{$value};
+  }
+
+  #{$property}: #{$value};
+}
+
+/// Set Prefixes for Keyframes
+/// @param {string} $name - animation name
+/// @content
+@mixin _keyframes($name) {
+  $webkit: true !default;
+  $moz: true !default;
+  $ms: true !default;
+  $o: true !default;
+
+  @if $webkit == true {
+    @-webkit-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @if $moz == true {
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @if $ms == true {
+    @-ms-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @if $o == true {
+    @-o-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+/// Set an Input Placeholder
+/// @content
+@mixin _placeholder() {
+  $webkit: true !default;
+  $moz: true !default;
+  $ms: true !default;
+  $o: true !default;
+
+  @if $webkit == true {
+    ::-webkit-input-placeholder {
+      @content;
+    }
+  }
+
+  @if $moz == true {
+    :-moz-placeholder {
+      @content;
+    }
+
+    ::-moz-placeholder {
+      @content;
+    }
+  }
+
+  @if $ms == true {
+    :-ms-input-placeholder {
+      @content;
+    }
+
+    /* Microsoft Edge */
+    ::-ms-input-placeholder {
+      @content;
+    }
+  }
+}

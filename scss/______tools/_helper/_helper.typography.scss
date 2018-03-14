@@ -1,0 +1,51 @@
+/* ================================ *\
+            Typegraphy
+\* ================================ */
+
+////
+/// @group text
+////
+
+/// define headline font
+/// @param {string} $font-weight ['regular'] font weight
+/// @param {string} $color [$color-headline] font color
+@mixin _font-headline($fontWeight: 'regular', $color: $color-headline) {
+    @include _text-rendering;
+
+    font-family: $font-headline;
+    font-weight: map_get($font-weight, $fontWeight);
+    font-style: normal;
+    line-height: 1.2;
+    color: $color;
+}
+
+/// define paragraph font
+/// @param {string} $font-weight ['regular'] font weight
+/// @param {string} $color [$color-headline] font color
+@mixin _font-paragraph($fontWeight: 'regular', $color: $color-paragraph) {
+    @include _text-rendering;
+
+    font-family: $font-headline;
+    font-weight: map_get($font-weight, $fontWeight);
+    font-style: normal;
+    line-height: 1.3;
+    color: $color;
+
+    strong {
+        font-weight: map_get($font-weight, 'bold');
+    }
+}
+
+/// define button font
+/// @param {string} $font-weight ['regular'] font weight
+/// @param {string} $color [$color-headline] font color
+@mixin _font-button($fontWeight: 'bold', $color: $color-paragraph) {
+    @include _text-rendering;
+
+    font-family: $font-headline;
+    font-weight: map_get($font-weight, $fontWeight);
+    font-style: normal;
+    line-height: 1.2;
+    color: $color;
+}
+

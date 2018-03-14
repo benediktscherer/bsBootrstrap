@@ -1,0 +1,42 @@
+/* ================================ *\
+   Icons
+\* ================================ */
+
+/// Text rendering
+/// @group text
+@mixin _text-rendering {
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/// Add Icon Styles
+/// @group Icons
+@mixin _icon-style() {
+    display: inline-block;
+
+    font-family: 'icomoon', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 1;
+    speak: none;
+    text-transform: none;
+
+    @include _text-rendering;
+
+}
+
+/// Add Icons by `@mixins`
+/// @group Icons
+/// @access public
+/// @param {string} $icon - FontAwesome Icon Unicode
+/// @link https://fontawesome.com/cheatsheet
+/// @example
+///   a:before{
+///     @include _getIcon('close');
+///   }
+@mixin _getIcon($icon) {
+    @include _icon-style();
+    content: map_get($iconMap, $icon);
+}

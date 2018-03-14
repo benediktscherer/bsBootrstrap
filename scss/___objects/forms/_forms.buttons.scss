@@ -1,82 +1,82 @@
 @mixin _btn-alignment() {
-  position: relative;
-  width: 100%;
-  height: 50px;
-  margin: 0 0 20px 0;
-  padding: 3px 40px;
-  @include _display-flex(flex, center, center, column);
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 0 0 20px 0;
+    padding: 3px 40px;
+    @include _display-flex(flex, center, center, column);
 
-  &[data-icon]:before {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 40px;
-    height: 100%;
-    @include _display-flex(flex, center, center);
-  }
+    &[data-icon]:before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40px;
+        height: 100%;
+        @include _display-flex(flex, center, center);
+    }
 }
 
 @mixin _btn-style($background-color: $color-black, $color: $color-white) {
-  border: 0;
-  border-radius: 2px;
-  background: $background-color;
-  border-bottom: 3px solid darken($background-color, 10%);
-
-  @include _transition(all);
-  @include _font-button($font-size-5, $color);
-  text-align: center;
-  cursor: pointer;
-
-  &:before {
-    background: darken($background-color, 6%);
-    border-right: 1px solid darken($background-color, 10%);
-  }
-
-  @include _link-default() {
-    color: $color;
-    text-decoration: none;
-  }
-  @include _link-active() {
-    outline: none;
-    text-decoration: none;
-    color: $color;
-    border-color: darken($background-color, 10%);
-    background: darken($background-color, 6%);
-  }
-
-  &:disabled,
-  &.disabled {
-    background: rgba(255, 255, 255, .6);
-    color: darken($color-grey, 20%);
     border: 0;
-    cursor: not-allowed;
+    border-radius: 2px;
+    background: $background-color;
+    border-bottom: 3px solid darken($background-color, 10%);
+
+    @include _transition(all);
+    @include _font-button('bold', $color);
+    @include _font-size($font-size-5);
+    text-align: center;
+    cursor: pointer;
 
     &:before {
-      background: transparent;
-      border-color: darken($color-grey, 5%);
+        background: darken($background-color, 6%);
+        border-right: 1px solid darken($background-color, 10%);
     }
-  }
+
+    @include _link-default() {
+        color: $color;
+        text-decoration: none;
+    }
+    @include _link-active() {
+        outline: none;
+        text-decoration: none;
+        color: $color;
+        border-color: darken($background-color, 10%);
+        background: darken($background-color, 6%);
+    }
+
+    &:disabled,
+    &.disabled {
+        background: rgba(255, 255, 255, .6);
+        color: darken($color-grey, 20%);
+        border: 0;
+        cursor: not-allowed;
+
+        &:before {
+            background: transparent;
+            border-color: darken($color-grey, 5%);
+        }
+    }
 }
 
 // =======================================
 button,
-input[type="submit"]{
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  @include _reset-glow();
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    @include _reset-glow();
 }
 
-
 .btn-cta {
-  @include _btn-alignment();
-  @include _btn-style($color-primary, $color-white);
+    @include _btn-alignment();
+    @include _btn-style($color-primary, $color-white);
 }
 
 .btn-default {
-  @include _btn-alignment();
-  @include _btn-style($color-black, $color-white);
+    @include _btn-alignment();
+    @include _btn-style($color-black, $color-white);
 }

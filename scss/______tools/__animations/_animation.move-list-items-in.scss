@@ -1,0 +1,17 @@
+/// Let list items slide in
+/// @access public
+/// @group animation transition
+/// @param {number} $amount [25] - amount of list items to animate
+/// @param {string} $duration [.15s] - animation time
+/// @param {string} $direction ['-bottom'] - direction of animation
+@mixin _move-list-items-in($amount: 25, $duration: 0.15s, $direction: '-bottom') {
+    opacity: 0;
+    animation: moveInAnimation#{$direction} $duration 1 ease-in-out;
+    animation-fill-mode: both;
+
+    @for $i from 1 through $amount {
+        &:nth-child(#{$i}) {
+            animation-delay: (0.03s * $i);
+        }
+    }
+}

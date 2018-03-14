@@ -1,0 +1,12 @@
+/// Zoom In
+/// @group animation keyframe
+@mixin _anim-zoomIn() {
+    @include _keyframes('_zoom-in') {
+        0% {
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}

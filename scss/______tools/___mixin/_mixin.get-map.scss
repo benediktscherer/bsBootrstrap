@@ -1,0 +1,9 @@
+@mixin _create-font-family($font-style) {
+    @each $key, $entry in mg($font, $font-style) {
+        ._font-#{$font-style}-#{key} {
+            font-family: $entry;
+        }
+    }
+}
+
+

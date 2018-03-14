@@ -1,8 +1,7 @@
 /* ================================ *\
     Headlines
 \* ================================ */
-h1{
-  margin: 0;
-  padding: 0;
-  @include _font-headline($font-size-1, $color-headline);
+h1 {
+    @include _reset-alignment();
+    @include _font-headline('regular', $color-headline);
 }
