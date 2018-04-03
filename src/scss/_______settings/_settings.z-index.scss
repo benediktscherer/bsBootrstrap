@@ -1,0 +1,15 @@
+/* ================================ *\
+
+  Map for z-Index
+  map-get($z-index, 'lightbox');
+
+\* ================================ */
+$z-index: (
+    "back": -1,
+    "body": 0,
+    "default": 1,
+    "content": 10,
+    "navbar": 20,
+    "lightbox": 30,
+    "loading-wheel": 90
+);

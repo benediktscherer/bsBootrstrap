@@ -1,15 +1,18 @@
 /* ================================ *\
             Font Family
 \* ================================ */
-$font-headline: 'Cambria, Georgia, serif';
-$font-paragraph: 'Arial, "Helvetica Neue", sans-serif';
+$font-headline: "proxima-nova", Arial, sans-serif;
+$font-paragraph: "proxima-nova", Arial, sans-serif;
 
 $font-button: $font-paragraph;
 
 $font-weight: (
-    "light": 100,
-    "regular": 300,
-    "bold": 700
+    "thin": 100,
+    "light": 300,
+    "regular": 400,
+    "semibold": 600,
+    "bold": 700,
+    "black": 900
 );
 
 /* ================================ *\

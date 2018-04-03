@@ -1,26 +1,26 @@
 /* ================================ *\
               COLORS
 \* ================================ */
-$color-primary:     #19315d !default;
-$color-secondary:   #fe8733 !default;
+$color-primary:     #16bae7 !default;
+$color-secondary:   #232831 !default;
 
-$color-black:       #222 !default;
+$color-black:       #151515 !default;
 $color-white:       #ffffff !default;
 
-$color-grey:        #8b919f !default;
-$color-grey-light:  #e7e9eb !default;
-$color-dark:        #3e3d40 !default;
+$color-grey-light:  #f1f1f3 !default;
+$color-grey:        #ededed !default;
+$color-grey-dark:   #3e3d40 !default;
 
-$color-success:     #87be42 !default;
+$color-success:     #a1c440 !default;
 $color-error:       #c83434 !default;
 $color-hint:        #485a7d !default;
 
-$color-cta:         $color-secondary !default;
+$color-cta:         #a1c440 !default;
 
 
 // Main
 $color-background:  $color-white !default;
-$color-paragraph:   #8b919f !default;
+$color-paragraph:   #44484f !default;
 
 // Headline
 $color-headline:    $color-primary !default;

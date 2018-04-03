@@ -1,149 +1,191 @@
-module.exports = function (grunt) {
+module.exports = function (grunt){
 
-    require('time-grunt')(grunt);
+  require('time-grunt')(grunt);
 
-    var conf = {
-        cssCwd: 'scss/',
-        cssDest: 'public/css/',
+  var conf = {
+    cssCwd: 'src/scss/',
+    cssDest: 'dist/css/',
 
-        vendorCwd: 'vendor/components/',
-        jsCwd: 'scripts/',
-        jsDest: 'public/js/'
-    };
+    vendorCwd: 'node_modules/',
+    jsCwd: 'src/scripts/',
+    jsDest: 'dist/js/',
 
-    // Project configuration.
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+    imgCwd: 'src/images',
+    imgDest: 'dist/images',
 
-        /**
-         * Modernizr
-         */
-        modernizr: {
-            dist: {
-                "parseFiles": true,
-                "customTests": [],
-                // "devFile": "/PATH/TO/modernizr-dev.js",
-                "dest": conf.jsCwd + "libraries/modernizr-output.js",
-                "tests": [
-                    "touchevents"
-                ],
-                "options": [
-                    "setClasses"
-                ],
-                "uglify": true
-            }
+    fontCwd: 'src/fonts',
+    fontDest: 'dist/fonts'
+  };
+
+  // Project configuration.
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+
+    /**
+     * Modernizr
+     */
+    modernizr: {
+      dist: {
+        "parseFiles": true,
+        "customTests": [],
+        "dest": conf.jsDest + "modernizr-output.js",
+        "tests": [
+          "touchevents"
+        ],
+        "options": [
+          "setClasses"
+        ],
+        "uglify": true
+      }
+    },
+
+    /**
+     * Combine Javascript
+     */
+    uglify: {
+      libraries: {
+        files: [{
+          src: [
+            conf.vendorCwd + "jQuery/tmp/jquery.js"
+          ],
+          dest: conf.jsDest + "libraries.min.js"
+        }]
+      },
+
+      components: {
+        files: [{
+          src: [
+            conf.jsCwd + "components/*.js"
+          ],
+          dest: conf.jsDest + "components.min.js"
+        }]
+      },
+
+      app: {
+        files: [{
+          src: [
+            conf.jsCwd + '*.js'
+          ],
+          dest: conf.jsDest + "app.min.js"
+        }]
+      }
+    },
+
+    /**
+     * Compile Sass
+     */
+    sass: {
+      dist: {
+        options: {
+          sourceMap: false,
+          outputStyle: 'compressed',
+          includePaths: [conf.cssCwd]
         },
 
-        /**
-         * Combine Javascript
-         */
-        uglify: {
-            libraries: {
-                files: [{
-                    src: [
-                        conf.vendorCwd + "jquery/jquery.min.js",
-                        conf.jsCwd + "libraries/modernizr-output.js"
-                    ],
-                    dest: conf.jsDest + "libraries.min.js"
-                }]
-            },
+        files: [{
+          expand: true,
+          cwd: conf.cssCwd,
+          src: ['app.scss'],
+          dest: conf.cssDest,
+          ext: '.min.css'
+        }]
+      }
+    },
 
-            components: {
-                files: [{
-                    src: [
-                        conf.jsCwd + "helper/*.js"
-                    ],
-                    dest: conf.jsDest + "components.min.js"
-                }]
-            },
+    postcss: {
+      options: {
+        processors: [
+          require('autoprefixer')({browsers: 'last 2 versions, safari 8'}), // add vendor prefixes
+          require('postcss-discard-comments')({removeAll: true}) // remove comments
+        ]
+      },
+      dist: {
+        src: conf.cssDest + '*.css'
+      }
+    },
 
-            app: {
-                files: [{
-                    src: [
-                        conf.jsCwd + '*.js'
-                    ],
-                    dest: conf.jsDest + "app.min.js"
-                }]
-            }
-        },
-
-        /**
-         * Compile Sass
-         */
-        sass: {
-            dist: {
-                options: {
-                    sourceMap: false,
-                    outputStyle: 'compressed',
-                    includePaths: [conf.cssCwd]
-                },
-
-                files: [{
-                    expand: true,
-                    cwd: conf.cssCwd,
-                    src: ['app.scss'],
-                    dest: conf.cssDest,
-                    ext: '.min.css'
-                }]
-            }
-        },
-
-        postcss: {
-            options: {
-                processors: [
-                    require('autoprefixer')({browsers: 'last 2 versions, safari 8'}), // add vendor prefixes
-                    require('postcss-discard-comments')({removeAll: true}) // remove comments
-                ]
-            },
-            dist: { // = distPortal
-                src: conf.cssDest + '*.css'
-            }
-        },
-
-        /**
-         * SassDoc
-         * http://sassdoc.com/
-         */
-        sassdoc: {
-            default: {
-                src: conf.cssCwd + '**/*.scss',
-                options: {
-                    dest: conf.cssDest + 'sassdoc/'
-                }
-            }
-        },
-
-        /**
-         * Watch Tasks
-         */
-        watch: {
-            scripts: {
-                files: [
-                    conf.cssCwd + '**/*.scss',
-                    conf.jsCwd + '*.js'
-                ],
-                tasks: ['sass', 'sassdoc', 'uglify:components', 'uglify:app'],
-                options: {
-                    spawn: false
-                }
-            }
+    /**
+     * SassDoc
+     * http://sassdoc.com/
+     */
+    sassdoc: {
+      default: {
+        src: conf.cssCwd + '**/*.scss',
+        options: {
+          dest: conf.cssDest + 'sassdoc/'
         }
-    });
+      }
+    },
+
+    /**
+     * Copy Files & Dependencies
+     */
+    copy: {
+      javascript: {
+        files: [
+          {
+            expand: true,
+            flatten: true,
+            src: [
+              conf.jsCwd + '/libraries/html5shiv.js',
+              conf.jsCwd + '/libraries/modernizr-output.js'
+            ],
+            dest: conf.jsDest
+          }
+        ]
+      },
+      images: {
+        files: [
+          {
+            expand: true,
+            flatten: false,
+            cwd: conf.imgCwd,
+            src: '**',
+            dest: conf.imgDest
+          }
+        ]
+      },
+      fonts: {
+        files: [
+          {
+            expand: true,
+            flatten: false,
+            cwd: conf.fontCwd,
+            src: ['*/**.otf', '*/*.eot', '*/**.svg', '*/**.ttf', '*/**.woff', '*/**.woff2'],
+            dest: conf.fontDest
+          }
+        ]
+      }
+    },
+
+    /**
+     * Watch Tasks
+     */
+    watch: {
+      scripts: {
+        files: [
+          conf.cssCwd + '**/*.scss',
+          conf.jsCwd + '*.js'
+        ],
+        tasks: ['sass', 'sassdoc', 'uglify:components', 'uglify:app'],
+        options: {
+          spawn: false
+        }
+      }
+    }
+  });
 
 
-    // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks("grunt-composer");
-    grunt.loadNpmTasks("grunt-contrib-uglify");
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('grunt-postcss');
-    grunt.loadNpmTasks('grunt-sassdoc');
-    grunt.loadNpmTasks("grunt-modernizr");
+  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks("grunt-contrib-uglify");
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-sassdoc');
+  grunt.loadNpmTasks("grunt-modernizr");
 
-
-    // Define Task(s)
-    grunt.registerTask('default', 'composer:install', 'modernizr', 'uglify', 'sass', 'postcss', 'sassdoc');
-
-    grunt.registerTask('dev', ['default', 'watch']);
-    grunt.registerTask('composer', 'composer:install');
+  // Define Task(s)
+  grunt.registerTask('default', ['modernizr', 'uglify', 'sass', 'postcss', 'copy']);
+  grunt.registerTask('dev', ['default', 'sassdoc', 'watch']);
 };
