@@ -3,6 +3,9 @@ module.exports = function (grunt){
   require('time-grunt')(grunt);
 
   var conf = {
+    cwd: 'src/',
+    dest: 'dist/',
+
     cssCwd: 'src/scss/',
     cssDest: 'dist/css/',
 
@@ -20,24 +23,6 @@ module.exports = function (grunt){
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
-    /**
-     * Modernizr
-     */
-    modernizr: {
-      dist: {
-        "parseFiles": true,
-        "customTests": [],
-        "dest": conf.jsDest + "modernizr-output.js",
-        "tests": [
-          "touchevents"
-        ],
-        "options": [
-          "setClasses"
-        ],
-        "uglify": true
-      }
-    },
 
     /**
      * Combine Javascript
@@ -121,14 +106,24 @@ module.exports = function (grunt){
      * Copy Files & Dependencies
      */
     copy: {
+      index: {
+        files: [
+          {
+            expand: true,
+            flatten: false,
+            cwd: './',
+            src: 'index.html',
+            dest: conf.dest
+          }
+        ]
+      },
       javascript: {
         files: [
           {
             expand: true,
             flatten: true,
             src: [
-              conf.jsCwd + '/libraries/html5shiv.js',
-              conf.jsCwd + '/libraries/modernizr-output.js'
+              conf.jsCwd + '/libraries/html5shiv.js'
             ],
             dest: conf.jsDest
           }
@@ -183,9 +178,8 @@ module.exports = function (grunt){
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-sassdoc');
-  grunt.loadNpmTasks("grunt-modernizr");
 
   // Define Task(s)
-  grunt.registerTask('default', ['modernizr', 'uglify', 'sass', 'postcss', 'copy']);
+  grunt.registerTask('default', ['uglify', 'sass', 'postcss', 'copy']);
   grunt.registerTask('dev', ['default', 'sassdoc', 'watch']);
 };

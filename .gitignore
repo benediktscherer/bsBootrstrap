@@ -1,4 +1,9 @@
+.idea/*
+!.idea/codeStyleSettings.xml
+!.idea/codeStyles
+
 node_modules
-.idea
-public/css/sassdoc/*
 vendor/*
+dist/*
+
+public/css/sassdoc/*
