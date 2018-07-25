@@ -12,7 +12,9 @@
   },
   "license": "UNLICENSED",
   "scripts": {
-    "grunt": "grunt"
+    "grunt": "grunt",
+    "icomoon": "node_modules/.bin/icomoon-build -p src/fonts/[ICOMOON-PROJECT].json --fonts dist/fonts/",
+    "postinstall": "npm run icomoon"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
@@ -26,7 +28,8 @@
     "grunt-sass": "^2.0.0",
     "grunt-sassdoc": "^2.0.2",
     "postcss-discard-comments": "^2.0.4",
-    "time-grunt": "^1.4.0"
+    "time-grunt": "^1.4.0",
+    "icomoon-build": "^0.2.8"
   },
   "dependencies": {
     "jQuery": "^1.7.4"
