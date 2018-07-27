@@ -17,7 +17,13 @@ module.exports = function (grunt){
     imgDest: 'dist/images',
 
     fontCwd: 'src/fonts',
-    fontDest: 'dist/fonts'
+    fontDest: 'dist/fonts',
+
+    tmplCwd: 'src/templates/',
+    tmplDest: 'dist/templates/',
+
+    incCwd: 'src/inc/',
+    incDest: 'dist/inc/'
   };
 
   // Project configuration.
@@ -31,9 +37,19 @@ module.exports = function (grunt){
       libraries: {
         files: [{
           src: [
-            conf.vendorCwd + "jQuery/tmp/jquery.js"
+            conf.vendorCwd + "jQuery/tmp/jquery.js",
+            conf.vendorCwd + "nunjucks/browser/nunjucks.js"
           ],
           dest: conf.jsDest + "libraries.min.js"
+        }]
+      },
+
+      helper: {
+        files: [{
+          src: [
+            conf.jsCwd + "helper/*.js"
+          ],
+          dest: conf.jsDest + "helper.min.js"
         }]
       },
 
@@ -117,18 +133,6 @@ module.exports = function (grunt){
           }
         ]
       },
-      javascript: {
-        files: [
-          {
-            expand: true,
-            flatten: true,
-            src: [
-              conf.jsCwd + '/libraries/html5shiv.js'
-            ],
-            dest: conf.jsDest
-          }
-        ]
-      },
       images: {
         files: [
           {
@@ -150,6 +154,28 @@ module.exports = function (grunt){
             dest: conf.fontDest
           }
         ]
+      },
+      templates: {
+        files: [
+          {
+            expand: true,
+            flatten: false,
+            cwd: conf.tmplCwd,
+            src: ['**.html', '**.json'],
+            dest: conf.tmplDest
+          }
+        ]
+      },
+      inc: {
+        files: [
+          {
+            expand: true,
+            flatten: false,
+            cwd: conf.incCwd,
+            src: ['**.*'],
+            dest: conf.incDest
+          }
+        ]
       }
     },
 
@@ -157,12 +183,39 @@ module.exports = function (grunt){
      * Watch Tasks
      */
     watch: {
+      css: {
+        files: [
+          conf.cssCwd + '**/*.scss'
+        ],
+        tasks: ['sass', 'sassdoc'],
+        options: {
+          spawn: false
+        }
+      },
       scripts: {
         files: [
-          conf.cssCwd + '**/*.scss',
-          conf.jsCwd + '*.js'
+          conf.jsCwd + '*.js',
+          conf.jsCwd + 'components/*.js',
+          conf.jsCwd + 'helper/*.js'
         ],
-        tasks: ['sass', 'sassdoc', 'uglify:components', 'uglify:app'],
+        tasks: ['uglify:helper', 'uglify:components', 'uglify:app'],
+        options: {
+          spawn: false
+        }
+      },
+      index: {
+        files: './index.html',
+        tasks: ['copy:index'],
+        options: {
+          spawn: false
+        }
+      },
+      templates: {
+        files: [
+          conf.tmplCwd + "**/*.html",
+          conf.tmplCwd + "**/*.json"
+        ],
+        tasks: ['copy:templates'],
         options: {
           spawn: false
         }
