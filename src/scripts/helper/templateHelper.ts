@@ -1,6 +1,4 @@
-declare var jQuery: any;
-declare var nunjucks: any;
-declare var app_settings: any;
+///<reference path='../typings/app.d.ts' />
 
 class TemplateHelper {
     private templateUrl: any = app_settings.dist_url + 'templates';
