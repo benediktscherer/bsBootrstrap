@@ -12,6 +12,7 @@ module.exports = function (grunt){
     vendorCwd: 'node_modules/',
     jsCwd: 'src/scripts/',
     jsDest: 'dist/js/',
+    jsCompile: 'src/scripts/_tmp/',
 
     imgCwd: 'src/images',
     imgDest: 'dist/images',
@@ -52,7 +53,8 @@ module.exports = function (grunt){
       default: {
         src: [
           conf.jsCwd + "**/*.ts"
-        ]
+        ],
+        outDir: conf.jsCompile
       }
     },
 
@@ -74,15 +76,22 @@ module.exports = function (grunt){
 
       components: {
         files: [{
-          src: conf.jsCwd + 'components/**/*.js',
+          src: conf.jsCompile + 'components/**/*.js',
           dest: conf.jsDest + 'components.min.js'
         }]
       },
 
       helper: {
         files: [{
-          src: conf.jsCwd + 'helper/**/*.js',
+          src: conf.jsCompile + 'helper/**/*.js',
           dest: conf.jsDest + 'helper.min.js'
+        }]
+      },
+
+      app: {
+        files: [{
+          src: conf.jsCompile + '*.js',
+          dest: conf.jsDest + 'app.min.js'
         }]
       }
     },
@@ -250,7 +259,13 @@ module.exports = function (grunt){
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-sassdoc');
 
+  grunt.registerTask("set_dev_options", "Set Config variables for dev tasks", function (){
+    grunt.config.set("uglify.options.sourceMap", true);
+    grunt.config.set("uglify.options.mangle", false);
+    grunt.config.set("uglify.options.beautify", true);
+  });
+
   // Define Task(s)
-  grunt.registerTask('default', ['uglify', 'ts', 'sass', 'postcss', 'copy']);
-  grunt.registerTask('dev', ['default', 'sassdoc', 'watch']);
+  grunt.registerTask('default', ['ts', 'uglify', 'sass', 'postcss', 'copy']);
+  grunt.registerTask('dev', ['set_dev_options', 'default', 'sassdoc', 'watch']);
 };
