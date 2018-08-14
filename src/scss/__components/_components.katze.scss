@@ -1,0 +1,7 @@
+.katze {
+  width: 100%;
+  height: 100%;
+  @include _display-flex(flex, center, center, row);
+
+  background: $color-grey-light;
+}

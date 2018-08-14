@@ -2,6 +2,6 @@
 
 class HundComponent extends BaseComponent {
     public init() {
-        console.log('wuff wuff');
+
     }
 }

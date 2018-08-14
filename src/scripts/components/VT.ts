@@ -41,6 +41,8 @@ class VT {
         }
 
         if (isConstructor(window[config.className])) {
+            console.info('Find Component', config);
+
             let component = new window[config.className]();
             component.init();
         }
