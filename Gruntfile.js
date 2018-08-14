@@ -38,7 +38,7 @@ module.exports = function (grunt){
     ts: {
       options: {
         allowJs: false,
-        target: "es5",
+        target: 'es5',
         rootDir: conf.jsCwd,
         sourceMap: false,
         strictNullChecks: false,
@@ -52,9 +52,10 @@ module.exports = function (grunt){
 
       default: {
         src: [
-          conf.jsCwd + "**/*.ts"
+          conf.jsCwd + '**/*.ts'
         ],
-        outDir: conf.jsCompile
+        outDir: conf.jsCompile,
+        reference: conf.jsCwd + 'typings/references.ts'
       }
     },
 

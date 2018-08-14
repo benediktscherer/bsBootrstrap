@@ -13,3 +13,4 @@ public/css/sassdoc/*
 
 # typescript compiled files
 src/scripts/**/*.js
+src/**/references.ts
