@@ -1,9 +1,15 @@
+node_modules
+vendor/*
+dist/*
+.tscache/*
+
+# dev
 .idea/*
 !.idea/codeStyleSettings.xml
 !.idea/codeStyles
 
-node_modules
-vendor/*
-dist/*
-
 public/css/sassdoc/*
+
+
+# typescript compiled files
+src/scripts/**/*.js

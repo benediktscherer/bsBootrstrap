@@ -2,7 +2,7 @@ module.exports = function (grunt){
 
   require('time-grunt')(grunt);
 
-  var conf = {
+  let conf = {
     cwd: 'src/',
     dest: 'dist/',
 
@@ -31,7 +31,35 @@ module.exports = function (grunt){
     pkg: grunt.file.readJSON('package.json'),
 
     /**
-     * Combine Javascript
+     * Compile TypeScript
+     * https://www.npmjs.com/package/grunt-ts
+     */
+    ts: {
+      options: {
+        allowJs: false,
+        target: "es5",
+        rootDir: conf.jsCwd,
+        sourceMap: false,
+        strictNullChecks: false,
+        noImplicitReturns: false,
+        noImplicitThis: false,
+        noUnusedLocals: false,
+        pretty: true,
+        experimentalDecorators: true,
+        emitDecoratorMetadata: true
+      },
+
+      default: {
+        src: [
+          conf.jsCwd + "**/*.ts"
+        ]
+      }
+    },
+
+
+    /**
+     * Minify files with UglifyJS and move to dist
+     * https://github.com/gruntjs/grunt-contrib-uglify
      */
     uglify: {
       libraries: {
@@ -44,33 +72,21 @@ module.exports = function (grunt){
         }]
       },
 
-      helper: {
-        files: [{
-          src: [
-            conf.jsCwd + "helper/*.js"
-          ],
-          dest: conf.jsDest + "helper.min.js"
-        }]
-      },
-
       components: {
         files: [{
-          src: [
-            conf.jsCwd + "components/*.js"
-          ],
-          dest: conf.jsDest + "components.min.js"
+          src: conf.jsCwd + 'components/**/*.js',
+          dest: conf.jsDest + 'components.min.js'
         }]
       },
 
-      app: {
+      helper: {
         files: [{
-          src: [
-            conf.jsCwd + '*.js'
-          ],
-          dest: conf.jsDest + "app.min.js"
+          src: conf.jsCwd + 'helper/**/*.js',
+          dest: conf.jsDest + 'helper.min.js'
         }]
       }
     },
+
 
     /**
      * Compile Sass
@@ -93,6 +109,7 @@ module.exports = function (grunt){
       }
     },
 
+
     postcss: {
       options: {
         processors: [
@@ -104,6 +121,7 @@ module.exports = function (grunt){
         src: conf.cssDest + '*.css'
       }
     },
+
 
     /**
      * SassDoc
@@ -117,6 +135,7 @@ module.exports = function (grunt){
         }
       }
     },
+
 
     /**
      * Copy Files & Dependencies
@@ -179,6 +198,7 @@ module.exports = function (grunt){
       }
     },
 
+
     /**
      * Watch Tasks
      */
@@ -194,11 +214,9 @@ module.exports = function (grunt){
       },
       scripts: {
         files: [
-          conf.jsCwd + '*.js',
-          conf.jsCwd + 'components/*.js',
-          conf.jsCwd + 'helper/*.js'
+          conf.jsCwd + '**/*.ts'
         ],
-        tasks: ['uglify:helper', 'uglify:components', 'uglify:app'],
+        tasks: ['ts', 'uglify'],
         options: {
           spawn: false
         }
@@ -224,7 +242,7 @@ module.exports = function (grunt){
   });
 
 
-  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks("grunt-ts");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -233,6 +251,6 @@ module.exports = function (grunt){
   grunt.loadNpmTasks('grunt-sassdoc');
 
   // Define Task(s)
-  grunt.registerTask('default', ['uglify', 'sass', 'postcss', 'copy']);
+  grunt.registerTask('default', ['uglify', 'ts', 'sass', 'postcss', 'copy']);
   grunt.registerTask('dev', ['default', 'sassdoc', 'watch']);
 };
