@@ -1,4 +1,4 @@
-///<reference path='../typings/app.d.ts' />
+///<reference path='../typings/references.ts' />
 
 class TemplateHelper {
     private templateUrl: any = app_settings.dist_url + 'templates';
@@ -7,8 +7,6 @@ class TemplateHelper {
 
     public init() {
         nunjucks.configure(this.templateUrl, {autoescape: true});
-
-        console.log('hund');
     }
 
 

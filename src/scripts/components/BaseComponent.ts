@@ -1,0 +1,6 @@
+class BaseComponent {
+
+    public init() {
+
+    }
+}
