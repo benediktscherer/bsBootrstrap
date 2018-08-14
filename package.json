@@ -1,6 +1,6 @@
 {
-  "name": "bsBootstrap",
-  "version": "0.1.0",
+  "name": "bsbootstrap",
+  "version": "0.1.2",
   "author": {
     "name": "Benedikt Scherer",
     "email": "mail@benedikt-scherer.de",
@@ -13,7 +13,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "grunt": "grunt",
-    "icomoon": "node_modules/.bin/icomoon-build -p src/fonts/[ICOMOON-PROJECT].json --fonts dist/fonts/",
+    "icomoon": "mkdir -p dist/fonts && node_modules/.bin/icomoon-build -p src/fonts/new-project.json --scss src/scss/_______settings/_settings.icomoon.scss --fonts dist/fonts/",
     "postinstall": "npm run icomoon"
   },
   "devDependencies": {

@@ -2,11 +2,11 @@
     BODY / HTML
 \* ================================ */
 body {
-    position: relative;
-    @include _font-paragraph();
+  position: relative;
+  @include _font-paragraph();
 }
 
 p {
-    @include _reset-alignment();
-    @include _font-paragraph();
+  @include _reset-alignment();
+  @include _font-paragraph();
 }

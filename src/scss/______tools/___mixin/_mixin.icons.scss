@@ -5,38 +5,50 @@
 /// Text rendering
 /// @group text
 @mixin _text-rendering {
-    text-rendering: geometricPrecision;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /// Add Icon Styles
 /// @group Icons
 @mixin _icon-style() {
-    display: inline-block;
+  display: inline-block;
 
-    font-family: 'icomoon', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    line-height: 1;
-    speak: none;
-    text-transform: none;
+  font-family: 'icomoon', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
 
-    @include _text-rendering;
+  @include _text-rendering;
 
 }
 
-/// Add Icons by `@mixins`
+/// Add Icons by `@mixin` from icomoon
 /// @group Icons
 /// @access public
-/// @param {string} $icon - FontAwesome Icon Unicode
-/// @link https://fontawesome.com/cheatsheet
+/// @param {string} $icon
+/// @example
+///   a:before{
+///     @include _getIcon('icon-close-content');
+///   }
+@mixin _getIcon($icon) {
+  @include _icon-style();
+  content: $icon;
+}
+
+/// Add Icons by `@mixin` from custom map
+/// @group Icons
+/// @access public
+/// @param {string} $icon
 /// @example
 ///   a:before{
 ///     @include _getIcon('close');
 ///   }
-@mixin _getIcon($icon) {
-    @include _icon-style();
-    content: map_get($iconMap, $icon);
+@mixin _getIconFromMap($icon) {
+  @include _icon-style();
+  content: map_get($iconMap, $icon);
 }
